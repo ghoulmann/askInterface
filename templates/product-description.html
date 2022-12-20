@@ -1,0 +1,46 @@
+{% extends 'includes/layout.html' %}
+
+
+
+
+{% block body %}
+<main class="container">
+  <div class="bg-light p-5 rounded mt-5">
+    <h1>Completion</h1>
+    <p class="lead">
+      <a href="https://github.com/openai/openai-cookbook#examples-organized-by-capability" target="_blank">Write, explain, or compare</a> in response to a query.
+    </p>
+
+    <h2>Write your query</h2>
+
+    <form name="completion" class="" action="/completion" method="post">
+
+      <div class="mb-3">
+        <label class="form-label">Completion</label>
+        <!--<input type="text" class="form-control" name="query" placeholder="Write an email to a colleague named Jill congratulating her on her promotion. The tone should be warm yet professional. Mention how you admire the work she's been putting in.  Include a joke about how her pet lizard Max enjoys eating grasshoppers. Mention how you're looking forward to the team off-site next week.">-->
+        <textarea class="form-control" name="query" rows="10" cols="80"></textarea>
+        <div class="form-text">Enter the query. See <a href="https://github.com/openai/openai-cookbook#examples-organized-by-capability" target="_blank">examples</a>.
+
+      <button type="submit" class="btn btn-primary btn-lg">Complete</button>
+
+    </form>
+  </div>
+
+  {% if request.method=='POST' %}
+  <div class="p-3 rounded">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="container">
+        <div class="Jumbotron">
+        <h3>Query</h3>
+          <div class="text-primary"><pre>{{prompt}}</pre></div>
+        </div>
+        <h3>Response</h3>
+        <div class="lead">{{ openAIAnswer|safe }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

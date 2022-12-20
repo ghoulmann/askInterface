@@ -1,0 +1,42 @@
+{% extends 'includes/layout.html' %}
+
+
+{% block body %}
+<main class="container">
+  <div class="bg-light p-5 rounded mt-5">
+    <h1>Compose a Profession Email Message</h1>
+    <p class="lead">
+    Generate a professional email from a prompt and starting sentence.
+    </p>
+
+
+    <form class="" name="email" action="/email" method="post">
+
+      <div class="mb-3">
+        <label class="form-label">Prompt</label><br>
+        <textarea cols="80" height="10" class="form-control" name="professionalEmail">E.g., Write me a professionl sounding email to a colleague. Start with "Dear....Provide the output in HTML."</textarea><br>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">Generate Professional Email</button>
+
+    </form>
+  </div>
+
+  {% if request.method=='POST' %}
+  <div class="p-3 rounded">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="container">
+          <div class="jumbotron">
+              <h3>Prompt</h3>
+              <div class="text-primary"><pre>{{ query }}</pre></div>
+          </div>
+          <h3>Response</h3>
+          <div class="lead">{{response|safe}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

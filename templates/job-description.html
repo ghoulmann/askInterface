@@ -1,0 +1,50 @@
+{% extends 'includes/layout.html' %}
+
+
+
+
+{% block body %}
+<main class="container">
+  <div class="bg-light p-5 rounded mt-5">
+    <h1> Generic Edit/Tranform Prompt</h1>
+    <p class="lead">
+      Have text or code to transform or edit? Use this generic edit form.
+    </p>
+
+    
+
+    <form class="" name="edit" action="/edit" method="post">
+
+      <div class="mb-3">
+        <label class="form-label">Instructions</label>
+        <input type="text" class="form-control" name="instruction" placeholder="e.g., Fix the OCR errors">
+        <label class="form-label">Content to transform or edit</label></br>
+        <textarea name="source" rows="10" cols="80">Replace with content you want to edit.</textarea></br>
+
+      <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+    </form>
+  </div>
+
+  {% if request.method=='POST' %}
+  <div class="p-3 rounded">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="container">
+          <div class="jumbotron">
+          <h3>Query</h3>
+            <div class="text-primary"><pre>{{ instruction }}</pre></div>
+
+            <div><pre>{{ source }}</pre></div>
+          </div>
+          <h3>Response</h3>
+            <div class="lead">{{ openAIAnswer|safe }}</div>
+          </div>
+      </div>  
+      </div>
+
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}
